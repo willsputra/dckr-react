@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run -e CI=true willsputra/dckr-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "dckr-react"
+  env: "Dckr-react-env"
+  bucket_name: "elasticbeanstalk-us-east-1-061405342014"
+  bucket_path: "dckr-react"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: "$AWS_SECRET_KEY"
